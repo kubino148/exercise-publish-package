@@ -20,6 +20,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file sample-packages/docker/Dockerfile --tag ghcr.io/kubino148/excercise_image:$TAG
     - name: login to GH Package repo
-      run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u kubino148 --password-stdin
+      run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u ${{github.actor}} --password-stdin
     - name: push docker image to GH repo 
       run: docker push ghcr.io/kubino148/excercise_image:$TAG
