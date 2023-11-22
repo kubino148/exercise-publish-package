@@ -19,4 +19,4 @@ jobs:
     - name: login to GH Package repo
       run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u kubino148 --password-stdin
     - name: push docker image to GH repo ghcr.io/kubino148/excercise_image:$(date +%s)
-      run: docker push 
+      run: docker push ghcr.io/kubino148/excercise_image:$(date +%s)
