@@ -5,7 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+env:
+  TAG: $(date +%s)
 jobs:
 
   push:
@@ -15,8 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file sample-packages/docker/Dockerfile --tag ghcr.io/kubino148/excercise_image:$(date +%s)
+      run: docker build . --file sample-packages/docker/Dockerfile --tag ghcr.io/kubino148/excercise_image:$TAG
     - name: login to GH Package repo
       run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u kubino148 --password-stdin
-    - name: push docker image to GH repo ghcr.io/kubino148/excercise_image:$(date +%s)
-      run: docker push ghcr.io/kubino148/excercise_image:$(date +%s)
+    - name: push docker image to GH repo 
+      run: docker push ghcr.io/kubino148/excercise_image:$TAG
