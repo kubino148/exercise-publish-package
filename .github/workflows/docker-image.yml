@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: echo $TAG
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file sample-packages/docker/Dockerfile --tag ghcr.io/kubino148/excercise_image:$TAG
